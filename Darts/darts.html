@@ -9,18 +9,23 @@
     <script src="https://cdn.jsdelivr.net/gh/tuftsceeo/SPIKE-Web-Interface@1.0/cdn/ServiceDock.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="./scripts/darts.css">
 	<script>
+        var current_player = 1; // player 1 or 2?
 		// some custom EN1 functions to make this work for us
 		function set_player(new_player_num) {
 			console.log('in main->set_player(', new_player_num, ')');
-			document.getElementById('player_num').value = new_player_num;
-			// update Airtable:
-			cloud_update("player_num", new_player_num);
+            console.log('- current player is now:', current_player);
+            current_player = new_player_num + 1; // convert 0 or 1 to 1 or 2...
+			document.getElementById('player_num').value = current_player;
+			// don't update Airtable...
+			// cloud_update("player_num", new_player_num);
 		}
 		function set_dart_val(new_dart_val) {
 			console.log('in main->set_dart_val(', new_dart_val, ')');
 			document.getElementById('dart_val').value = new_dart_val;
-			// update Airtable:
-			cloud_update("dart_val", new_dart_val);
+			// update Airtable with player number and cm amount
+            var name = "player" + current_player.toString() + "_cm";
+            console.log('-',name,'set to',new_dart_val);
+			cloud_update(name, new_dart_val);
 		}
 	</script>
 </head>
@@ -34,7 +39,9 @@
 
 <!-- Menu -->
 <p id="menu" align=center>
-	<a href="#" onclick="oGame.start();">New</a> |
+    <font size = "+3">
+    <a href="#" onclick="oGame.start();"><b>START</b></a>
+    </font> |
 	<a href="#" onclick="oGame.pause();">Pause</a> |
 	<select name="speed" class="combo" onchange="oGame.speed(this.options[this.selectedIndex].value);">
 		<option value="0">Slow</option>
@@ -51,9 +58,11 @@
 </p>
 <!-- Menu //-->
 
+
 <!-- Player 1 floating layer (left-aligned) -->
+
 <div id="Player1" style="top:50px;left:20px">
-<table align="left" border="0" width="150" bgcolor="#000099" cellspacing="0" cellpadding="5">
+<table align="left" border="0" width="300" bgcolor="#000099" cellspacing="0" cellpadding="5">
 <tr>
 <td width="100%">
 
@@ -110,7 +119,7 @@
 
 <!-- Player 2 floating layer (right-aligned) -->
 <div id="Player2" style="top:50px;right:20px">
-<table align="right" border="0" width="150" bgcolor="#990000" cellspacing="0" cellpadding="5">
+<table align="right" border="0" width="300" bgcolor="#990000" cellspacing="0" cellpadding="5">
 <tr>
 <td width="100%">
 

@@ -1,0 +1,43 @@
+<html>
+	<title>Dart Local Page</title>
+	<head>
+		<script src="https://cdn.jsdelivr.net/gh/tuftsceeo/SPIKE-Web-Interface/cdn/ServiceDock.js" charset="utf-8"></script>
+	  <script src="./scripts/secret.js" charset="utf-8"></script>
+	  <script src="./scripts/cloud.js" charset="utf-8"></script>
+	  <link rel="stylesheet" href="./scripts/style.css" />
+	</head>
+<body>
+
+	<!-- SERVICE DOCK -->
+	<div id="servicedock">
+        <!-- UPDATE THIS PLEASE"!!! -->
+		<service-airtable id="service_airtable" tablename="darts"></service-airtable>
+		<service-spike id="service_spike"></service-spike>
+	</div>
+
+	<h1>Dart Local Page - Car 1</h1>
+
+  <p>This demo shows simple buttons that activate code within SPIKE Prime Slots.</p>
+
+  <h2>Local Interface</h2>
+
+	<div class="cloud_check">
+		<b><em>Monitor Cloud:</em></b>
+
+	  <div type="cloud_check" cloud_compare="changes" cloud_action="download_code">
+			<input type=text id="cloud_name" value="player1_cm">
+      <input type=text id="cloud_action_val" value="0">
+      <textarea id="cloud_code">from spike import PrimeHub
+from spike import MotorPair
+hub = PrimeHub()
+my_text = 'REPLACE[cloud_current]'
+motor_pair = MotorPair('E', 'F')
+motor_pair.move_tank(float(my_text)*10, 'cm', left_speed=-90, right_speed=-90)
+</textarea>
+			<input type=text id="cloud_reset" value="">
+    </div>
+
+	</div>
+
+</body>
+</html>

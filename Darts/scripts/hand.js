@@ -135,7 +135,7 @@ Hand.prototype.directionDown = function() {
 	this.directionY = 1;
 }
 
-/*****************************************************************************¡
+/*****************************************************************************ï¿½
  * Function		move
  * Description	Moves the hand layer around the game space.
  * Parameters	none
@@ -159,7 +159,7 @@ Hand.prototype.move = function() {
 	this.moveBy(this.directionX * this.STEP, this.directionY * this.STEP);
 }
 
-/*****************************************************************************¡
+/*****************************************************************************ï¿½
  * Function		moveToCenter
  * Description	Moves the hand layer to the center of the game space.
  * Parameters	none
