@@ -40,9 +40,10 @@
 <!-- Menu -->
 <p id="menu" align=center>
     <font size = "+3">
-    <a href="#" onclick="oGame.start();"><b>START</b></a>
-    </font> |
+    <!--<a href="#" onclick="oGame.start();"><b>START</b></a>-->
+    </font>  
 	<a href="#" onclick="oGame.pause();">Pause</a> |
+
 	<select name="speed" class="combo" onchange="oGame.speed(this.options[this.selectedIndex].value);">
 		<option value="0">Slow</option>
 		<option value="1">Medium</option>
@@ -52,7 +53,14 @@
 	<br /><br />
 
 	<span><label id="lblFeed" style="font-family:arial black;">The Horace Mann School DARTS Game</label></span>
-
+    <br /><br />
+ <font size = "+5">
+    <a href="#" onclick="oGame.start();"><b>START</b></a>
+    </font> 
+    <br /><br />
+    <a> IMPORTANT: Wait for 10 seconds after you throw your dart before throwing another one! </a>
+    <br/><br/>
+    <img src="waittothrow.gif"> 
 	<br /><br />
 	
 </p>
@@ -100,6 +108,7 @@
 </td>
 </tr>
 </table>
+
 
 <!-- EN1 DEBUGGING (set: "display: none;" to hide) -->
 <div style='margin: 10px; align-content: center;'>

@@ -398,6 +398,18 @@ Game.prototype.rules501 = function() {
 
 	this.aScores[this.playerId].setDart(this.dartId, score);
 
+// NEW SCORING OF SIMPLE BALLOON GAME
+
+	if (this.aScores[this.playerId].total <= 0) {
+		ret = this.finish(this.playerId);		// game is finished (current player wins)
+	} else {
+		// check if the player needs to be changed
+		if (ret && this.dartId++ == 2) this.newTurn();
+	}
+	return ret;
+
+
+// OLD SCORING OF ORIGINAL DARTS GAME
 	if (this.aScores[this.playerId].total == 0 && (this.throwType == this.IS_DOUBLE || this.throwType == this.IS_MIDDLE)) {
 	// game ends (player reach 0 and finished with either a double or in the bull's eye)
 		ret = this.finish(this.playerId);		// game is finished (current player wins)
@@ -434,9 +446,10 @@ Game.prototype.rules501 = function() {
 Game.prototype.finish = function(playerId) {
 	this.oTimer.stop();
 
-	alert(setText('lblFeed',
-		(playerId == null ? this.oLang.str(12) : this.aScores[playerId].name + ': ' + this.oLang.str(3))
-	));
+// GET RID OF ALERT
+//	alert(setText('lblFeed',
+//		(playerId == null ? this.oLang.str(12) : this.aScores[playerId].name + ': ' + this.oLang.str(3))
+//	));
 
 	return false;
 }
